@@ -3300,10 +3300,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a44667974c99fe4c9a54024956eac6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  driverSpeed: 20
+  driverSpeed: 40
   slowSpeed: 15
   boostSpeed: 30
   carRotation: 300
+  accelriationTime: 2
 --- !u!212 &2138903836
 SpriteRenderer:
   m_ObjectHideFlags: 0
