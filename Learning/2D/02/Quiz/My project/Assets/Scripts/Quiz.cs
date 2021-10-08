@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class Quiz : MonoBehaviour
 {
     [Header("Questions")]
-    [SerializeField] QuestionSO question;
+    QuestionSO currentQuestion;
     [SerializeField] TextMeshProUGUI questionText;
+    [SerializeField] List<QuestionSO> questionSOs = new List<QuestionSO>();
 
     [Header("Answers")]
     [SerializeField] GameObject[] answerButtons;
@@ -22,11 +23,21 @@ public class Quiz : MonoBehaviour
     [SerializeField] Image timerImage;
     Timer timer;
 
+    [Header("Scoring")]
+    [SerializeField] TextMeshProUGUI scoreText;
+    ScoreKeeper scoreKeeper;
+
+    [Header("Progress Bar")]
+    [SerializeField] Slider progressBar;
+
     // Start is called before the first frame update
     void Start()
     {
         timer = FindObjectOfType<Timer>();
-        getNextQuestion();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        progressBar.maxValue = questionSOs.Count;
+        progressBar.minValue = 0;
+        progressBar.value = 0;
     }
 
     private void Update() {
@@ -41,36 +52,53 @@ public class Quiz : MonoBehaviour
         }
     }
 
+    public bool isComplete() {
+        return progressBar.value == progressBar.maxValue;
+    }
     private void getNextQuestion() {
-        setButtonsState(true);
-        setDefaultButtonSprites();
-        displayQuestion();
+        if (questionSOs.Count > 0) {
+            setButtonsState(true);
+            setDefaultButtonSprites();
+            getRandomQuestion();
+            displayQuestion();
+            scoreKeeper.increaseQuestionsAsked();
+        }
+        
+    }
+
+    private void getRandomQuestion() {
+        int index = Random.Range(0, questionSOs.Count);
+        currentQuestion = questionSOs[index];
+        questionSOs.RemoveAt(index);
     }
 
     private void displayQuestion() {
-        questionText.text = question.getQuestion();
+        questionText.text = currentQuestion.getQuestion();
 
         for (int i = 0; i < answerButtons.Length; i++) {
             TextMeshProUGUI buttonText = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = question.getAnswer(i);
+            buttonText.text = currentQuestion.getAnswer(i);
         }
     }
 
     public void onAnswerSelected(int index) {
+        progressBar.value++;
         hasAnsweredEarly = true;
         displayAnswer(index);
         setButtonsState(false);
         timer.resetTimer();
+        scoreText.text = "Score: " + scoreKeeper.getScore() + "%";
     }
 
     private void displayAnswer(int index) {
-        if (index == question.getCorrectAnswerIndex()) {
+        if (index == currentQuestion.getCorrectAnswerIndex()) {
+            scoreKeeper.increaseCorrectAnswers();
             questionText.text = "You are correct!";
             Image buttonImage = answerButtons[index].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
         } else {
-            questionText.text = "You are incorrect. The correct answer is\n" + question.getAnswer(question.getCorrectAnswerIndex());
-            answerButtons[question.getCorrectAnswerIndex()].GetComponent<Image>().sprite = correctAnswerSprite;
+            questionText.text = "You are incorrect. The correct answer is\n" + currentQuestion.getAnswer(currentQuestion.getCorrectAnswerIndex());
+            answerButtons[currentQuestion.getCorrectAnswerIndex()].GetComponent<Image>().sprite = correctAnswerSprite;
         }
     }
 
