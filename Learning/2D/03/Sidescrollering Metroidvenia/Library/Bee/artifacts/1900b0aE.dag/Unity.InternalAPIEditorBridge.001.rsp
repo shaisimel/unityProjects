@@ -303,6 +303,7 @@
 -r:"G:/Unity/Hub/Editor/2021.1.23f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Xml.dll"
 -r:"G:/Unity/Hub/Editor/2021.1.23f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Xml.Linq.dll"
 -r:"G:/Unity/Hub/Editor/2021.1.23f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
+-r:"G:/Unity/Projects/Learning/2D/03/Sidescrollering Metroidvenia/Library/PackageCache/com.unity.cinemachine@2.7.8/Runtime/ThirdParty/clipper_library.dll"
 -r:"G:/Unity/Projects/Learning/2D/03/Sidescrollering Metroidvenia/Library/PackageCache/com.unity.collab-proxy@1.9.0/Lib/Editor/PlasticSCM/log4netPlastic.dll"
 -r:"G:/Unity/Projects/Learning/2D/03/Sidescrollering Metroidvenia/Library/PackageCache/com.unity.collab-proxy@1.9.0/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll"
 -r:"G:/Unity/Projects/Learning/2D/03/Sidescrollering Metroidvenia/Library/PackageCache/com.unity.collab-proxy@1.9.0/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll"
