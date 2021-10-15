@@ -20,7 +20,9 @@ public class EnemyMovment : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        moveSpeed *= -1;
-        transform.localScale = new Vector2(-(Mathf.Sign(rigidbody2d.velocity.x)), transform.localScale.y);
+        if(!collision.gameObject.tag.Equals("Player")) {
+            moveSpeed *= -1;
+            transform.localScale = new Vector2(-(Mathf.Sign(rigidbody2d.velocity.x)), transform.localScale.y);
+        }
     }
 }

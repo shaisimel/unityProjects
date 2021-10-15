@@ -12,10 +12,13 @@ public class PlayerMovment : MonoBehaviour
     BoxCollider2D feetCollider2d;
     int groundLayerIndex;
     int climbingLayerIndex;
+    int hazardLayerIndex;
     float playerGravityScale;
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float jumpHeight = 5f;
     [SerializeField] float climbSpeed = 5f;
+    [SerializeField] GameObject arrow;
+    [SerializeField] GameObject arrowSpawnPoint;
     bool isAlive = true;
     
     // Start is called before the first frame update
@@ -26,6 +29,7 @@ public class PlayerMovment : MonoBehaviour
         bodyCollider2d = GetComponent<CapsuleCollider2D>();
         groundLayerIndex = LayerMask.GetMask("Ground");
         climbingLayerIndex = LayerMask.GetMask("Climbing");
+        hazardLayerIndex = LayerMask.GetMask("Hazards");
         playerGravityScale = rigidbody2d.gravityScale;
         feetCollider2d = GetComponent<BoxCollider2D>();
     }
@@ -38,6 +42,7 @@ public class PlayerMovment : MonoBehaviour
         Run();
         FlipSprite();
         climbLadder();
+        TouchHazard();
     }
 
     void FlipSprite() {
@@ -70,6 +75,12 @@ public class PlayerMovment : MonoBehaviour
         animator.SetBool("isClimbing", isClimbingLadder());
     }
 
+    void TouchHazard() {
+        if(isAlive && feetCollider2d.IsTouchingLayers(hazardLayerIndex)) {
+            Die();
+        }
+    }
+
     bool isClimbingLadder() {
         return feetCollider2d.IsTouchingLayers(climbingLayerIndex) && Mathf.Abs(rigidbody2d.velocity.y)>Mathf.Epsilon;
     }
@@ -82,9 +93,19 @@ public class PlayerMovment : MonoBehaviour
         }
     }
 
+    void OnFire(InputValue input) {
+        animator.SetTrigger("isShooting");
+       // Debug.Log("fire");
+        //GameObject newArrow = Instantiate(arrow, arrowSpawnPoint.transform.position, transform.rotation);
+    }
+
+    public void Fire() {
+        GameObject newArrow = Instantiate(arrow, arrowSpawnPoint.transform.position, transform.rotation);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision) {
         //Debug.Log("colided - " + collision.gameObject.tag);
-        if (collision.gameObject.tag.Equals("Enemy")) {
+        if (collision.gameObject.tag.Equals("Enemy") && isAlive) {
             Die();
         }
     }
@@ -92,5 +113,7 @@ public class PlayerMovment : MonoBehaviour
     void Die() {
         moveInput = new Vector2(0f, 0f);
         isAlive = false;
+        animator.SetTrigger("Dying");
+        rigidbody2d.velocity += new Vector2(-15f, 5f);
     }
 }

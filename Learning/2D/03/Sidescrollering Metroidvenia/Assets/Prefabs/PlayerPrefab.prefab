@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7974170363594364348}
   m_Layer: 8
   m_Name: PlayerPrefab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.36, y: -1.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4225339986824583099}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95,7 +96,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1839073925
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: -5185843610934385366, guid: edf1e03170aabc445ab5f8842d483101, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -190,6 +191,8 @@ MonoBehaviour:
   runSpeed: 5
   jumpHeight: 11.5
   climbSpeed: 3
+  arrow: {fileID: 3762400543135253260, guid: 5c9bfb923fd695b4f80c1203cb650782, type: 3}
+  arrowSpawnPoint: {fileID: 791204457788570362}
 --- !u!61 &7974170363594364348
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199,7 +202,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 270297918850539061}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6b11c4b9f46368f41856e544419fbae9, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -216,3 +219,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.44076824, y: 0.13639355}
   m_EdgeRadius: 0
+--- !u!1 &791204457788570362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4225339986824583099}
+  m_Layer: 8
+  m_Name: ArrowSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4225339986824583099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791204457788570362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.28, y: -0.24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 270297918850539056}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

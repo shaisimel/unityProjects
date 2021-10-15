@@ -53,8 +53,10 @@
     <UnityVersion>2021.1.23f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\PlayerMovment.cs" />
     <Compile Include="Assets\Scripts\EnemyMovment.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovment.cs" />
+    <Compile Include="Assets\Scripts\Arrow.cs" />
+    <Compile Include="Assets\Scripts\shoot.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
