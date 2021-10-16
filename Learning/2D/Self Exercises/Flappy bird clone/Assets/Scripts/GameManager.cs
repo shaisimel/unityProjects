@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,11 +33,17 @@ public class GameManager : MonoBehaviour
     public void Die() {
        // EditorApplication.isPaused = true;
         deathText.enabled = true;
+        
     }
 
     public void IncreasScore() {
         score++;
         updateScore();
+    }
+
+    public IEnumerator reload() {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator SpawnGates() {

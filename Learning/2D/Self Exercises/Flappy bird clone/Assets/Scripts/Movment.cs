@@ -6,28 +6,34 @@ using UnityEngine.InputSystem;
 public class Movment : MonoBehaviour
 {
     Rigidbody2D body;
-    [SerializeField] float jumpHeight = 1f;
-    [SerializeField] GameObject gameManagerObject;
+    [SerializeField] float jumpHeight = 1f;    
+    CapsuleCollider2D colider;
+    bool isAlive;
     GameManager gameManager;
 
 
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-        gameManager = gameManagerObject.GetComponent<GameManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        colider = GetComponent<CapsuleCollider2D>();
+        gameManager = FindObjectOfType<GameManager>();
+        isAlive = true;
     }
 
     void OnJump(InputValue input) {
-        body.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
+
+        //body.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
+        if (isAlive) {
+            body.velocity = new Vector2(0f, jumpHeight);
+        } else {
+            StartCoroutine(gameManager.reload());
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        if (!isAlive) return;
+
         if (collision.tag.Equals("Gate")) {
             gameManager.IncreasScore();
         }
@@ -35,6 +41,8 @@ public class Movment : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag.Equals("obsticale")) {
+            isAlive = false;
+            colider.enabled = false;
             gameManager.Die();
         }
     }
