@@ -20,7 +20,7 @@ TagManager:
   - Enemies
   - Hazards
   - Arrows
-  - 
+  - Interactibales
   - 
   - 
   - 
@@ -56,6 +56,9 @@ TagManager:
     locked: 0
   - name: Ladder
     uniqueID: 2897769045
+    locked: 0
+  - name: Portals
+    uniqueID: 4268363921
     locked: 0
   - name: Enemy
     uniqueID: 1966552089
