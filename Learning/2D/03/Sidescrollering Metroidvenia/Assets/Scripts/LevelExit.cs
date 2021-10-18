@@ -10,6 +10,7 @@ public class LevelExit : MonoBehaviour
 
     IEnumerator loadLevel() {
         yield return new WaitForSecondsRealtime(waitTime);
+        Destroy (FindObjectOfType<ScenePersist>().gameObject);
         SceneManager.LoadScene(level);
     }
 

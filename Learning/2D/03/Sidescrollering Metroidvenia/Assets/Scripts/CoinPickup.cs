@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoinPickup : MonoBehaviour
 {
     GameSession gs;
+    [SerializeField] AudioClip clip;
 
     void Awake()
     {
@@ -12,10 +13,11 @@ public class CoinPickup : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log(collision.tag);
+        //Debug.Log(collision.tag);
         if (collision.tag.Equals("Player")) {
-            Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
             gs.pickupCoin();
+            Destroy(gameObject);
         }
     }
 }
