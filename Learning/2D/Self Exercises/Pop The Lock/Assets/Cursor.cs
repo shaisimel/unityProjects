@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.UI;
 
 public class Cursor : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Cursor : MonoBehaviour
     [SerializeField] float bitRotationStep = 90f;
     [SerializeField] float minBitRotationStep = 30f;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] Image failShade;
 
 
     Bit bit;
@@ -32,6 +34,7 @@ public class Cursor : MonoBehaviour
     }
 
     void resetGame() {
+        failShade.enabled = false;
         score = 0;
         UpdateScoreText();
         direction = startDirection;
@@ -62,6 +65,7 @@ public class Cursor : MonoBehaviour
             isInBit = true;
         } else if (collision.tag.Equals("Fail")) {
             isAlive = false;
+            failShade.enabled = true;
         }
 
     }
@@ -84,6 +88,7 @@ public class Cursor : MonoBehaviour
             //Debug.Log("hit");
         } else {
             isAlive = false;
+            failShade.enabled = true;
             //Debug.Log("miss");
         }
     }
