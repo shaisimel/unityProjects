@@ -18,8 +18,11 @@ public class Player : MonoBehaviour
     Vector2 minBounds;
     Vector2 maxBounds;
 
+    Shooter shooter;
+
     private void Awake() {
         InitBounds();
+        shooter = GetComponent<Shooter>();
     }
 
     void OnMove(InputValue value) {
@@ -46,5 +49,11 @@ public class Player : MonoBehaviour
         newPos.x = Mathf.Clamp(transform.position.x + delta.x, minBounds.x + paddingLeft, maxBounds.x - paddingRight);
         newPos.y = Mathf.Clamp(transform.position.y + delta.y, minBounds.y + paddingBottom, maxBounds.y - paddingTop);
         transform.position = newPos;
+    }
+
+    void OnFire(InputValue value) {
+        if (shooter != null) {
+            shooter.isFiring = value.isPressed;
+        }
     }
 }
