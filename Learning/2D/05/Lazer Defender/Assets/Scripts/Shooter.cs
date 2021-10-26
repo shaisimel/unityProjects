@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+    [Header("Shooting")]
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileLifeTime = 5f;
     [SerializeField] float firingRate = 0.2f;
     [SerializeField] GameObject spawnPoint;
+    
+    [Header("AI")]
+    [SerializeField] bool useAi = false;
+    [SerializeField] float spawnVarriance = 0.5f;
+    [SerializeField] float minimunFiringRate = 0.2f;
 
-    public bool isFiring = false;
+    [HideInInspector] public bool isFiring = false;
     Coroutine fireCorutine;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (useAi) {
+            isFiring = true;
+        }
     }
 
     // Update is called once per frame
@@ -37,14 +45,21 @@ public class Shooter : MonoBehaviour
 
     IEnumerator FireContinusly() {
         while (true) {
-            GameObject instace = Instantiate(projectilePrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
+            GameObject instace = Instantiate(projectilePrefab, 
+                                             spawnPoint == null ? transform.position : spawnPoint.transform.position,
+                                             spawnPoint == null ? transform.rotation : spawnPoint.transform.rotation);
+
             Rigidbody2D rb2d = instace.GetComponent<Rigidbody2D>();
             if (rb2d != null) {
                 rb2d.velocity = transform.up * projectileSpeed;
             }
 
             Destroy(instace, projectileLifeTime);
-            yield return new WaitForSecondsRealtime(firingRate);
+            float waitTime = firingRate;
+            if (useAi) {
+                waitTime = Mathf.Clamp(Random.Range(firingRate - spawnVarriance, firingRate + spawnVarriance), minimunFiringRate, float.MaxValue);
+            }
+            yield return new WaitForSecondsRealtime(waitTime);
         }
     }
 }
