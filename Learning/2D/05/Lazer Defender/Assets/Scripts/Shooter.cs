@@ -18,6 +18,11 @@ public class Shooter : MonoBehaviour
 
     [HideInInspector] public bool isFiring = false;
     Coroutine fireCorutine;
+    AudioPlayer audioPlayer;
+
+    private void Awake() {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +64,8 @@ public class Shooter : MonoBehaviour
             if (useAi) {
                 waitTime = Mathf.Clamp(Random.Range(firingRate - spawnVarriance, firingRate + spawnVarriance), minimunFiringRate, float.MaxValue);
             }
+
+            audioPlayer.PlayShootingClip();
             yield return new WaitForSecondsRealtime(waitTime);
         }
     }

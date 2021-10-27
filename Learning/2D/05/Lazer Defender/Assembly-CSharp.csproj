@@ -55,12 +55,15 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\WaveConfigSO.cs" />
+    <Compile Include="Assets\Scripts\EnemyAiShooter.cs" />
     <Compile Include="Assets\Scripts\PathFinder.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Shooter.cs" />
     <Compile Include="Assets\Scripts\EnemySpwaner.cs" />
     <Compile Include="Assets\Scripts\DamageDealer.cs" />
-    <Compile Include="Assets\Scripts\EnemyAiShooter.cs" />
+    <Compile Include="Assets\Scripts\CameraShake.cs" />
+    <Compile Include="Assets\Scripts\SpriteScroller.cs" />
+    <Compile Include="Assets\Scripts\AudioPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Spaceshooter Assets\Spritesheet\sheet.xml" />
