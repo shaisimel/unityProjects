@@ -13,14 +13,16 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] float takingDamageVolume = 1f;
 
     public void PlayShootingClip() {
-        if (shootingClip != null) {
-            AudioSource.PlayClipAtPoint(shootingClip, Camera.main.transform.position, shootingVolume);
-        }
+        PlayClip(shootingClip, shootingVolume);
     }
 
     public void PlayTakingDamageClip() {
-        if (takingDamageClip != null) {
-            AudioSource.PlayClipAtPoint(takingDamageClip, Camera.main.transform.position, takingDamageVolume);
+        PlayClip(takingDamageClip, takingDamageVolume);
+    }
+
+    void PlayClip(AudioClip clip, float volume) {
+        if (clip != null) {
+            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, volume);
         }
     }
 }

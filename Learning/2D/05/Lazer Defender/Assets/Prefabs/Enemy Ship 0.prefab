@@ -41,13 +41,13 @@ GameObject:
   - component: {fileID: 7660943301581888762}
   - component: {fileID: 5641381389247318020}
   - component: {fileID: 356347307632892229}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Ai Trigger Zone
   m_TagString: Ai Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7660943301581888762
 Transform:
   m_ObjectHideFlags: 0
@@ -188,6 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   hitEffect: {fileID: 8169677550259486897, guid: 5945d213ebf6a8847ba1336c3719dc81, type: 3}
+  pointsValue: 50
+  applyCameraShakeOnHit: 0
 --- !u!114 &5353552447111001647
 MonoBehaviour:
   m_ObjectHideFlags: 0

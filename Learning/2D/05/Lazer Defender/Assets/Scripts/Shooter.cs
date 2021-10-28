@@ -27,9 +27,9 @@ public class Shooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (useAi) {
+       /* if (useAi) {
             isFiring = true;
-        }
+        }*/
     }
 
     // Update is called once per frame
