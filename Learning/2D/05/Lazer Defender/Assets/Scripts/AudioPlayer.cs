@@ -12,6 +12,15 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField] AudioClip takingDamageClip;
     [SerializeField] [Range(0f, 1f)] float takingDamageVolume = 1f;
 
+    private void Awake() {
+        if (FindObjectsOfType(GetType()).Length > 1) {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        } else {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     public void PlayShootingClip() {
         PlayClip(shootingClip, shootingVolume);
     }

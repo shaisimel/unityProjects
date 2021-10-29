@@ -57,15 +57,17 @@
     <Compile Include="Assets\Scripts\SpriteScroller.cs" />
     <Compile Include="Assets\Scripts\WaveConfigSO.cs" />
     <Compile Include="Assets\Scripts\EnemyAiShooter.cs" />
+    <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
     <Compile Include="Assets\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\PathFinder.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\UIDisplay.cs" />
     <Compile Include="Assets\Scripts\Shooter.cs" />
     <Compile Include="Assets\Scripts\EnemySpwaner.cs" />
     <Compile Include="Assets\Scripts\AudioPlayer.cs" />
     <Compile Include="Assets\Scripts\DamageDealer.cs" />
-    <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
-    <Compile Include="Assets\Scripts\UIDisplay.cs" />
+    <Compile Include="Assets\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\UIGameOver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -347,12 +347,14 @@
 "Assets/Scripts/EnemyAiShooter.cs"
 "Assets/Scripts/EnemySpwaner.cs"
 "Assets/Scripts/Health.cs"
+"Assets/Scripts/LevelManager.cs"
 "Assets/Scripts/PathFinder.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/ScoreKeeper.cs"
 "Assets/Scripts/Shooter.cs"
 "Assets/Scripts/SpriteScroller.cs"
 "Assets/Scripts/UIDisplay.cs"
+"Assets/Scripts/UIGameOver.cs"
 "Assets/Scripts/WaveConfigSO.cs"
 -langversion:8.0
 
